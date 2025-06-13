@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanaka Chinengundu - Freelance & Consulting Services</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com"> <!-- Replace with your actual domain -->
+    <meta property="og:title" content="Tanaka Chinengundu - Freelance & Consulting Services">
+    <meta property="og:description" content="Expert freelance and consulting services in Web Design, Web App Development, Remote IT Support, Hosting, WhatsApp Bots, and Systems Development.">
+    <meta property="og:image" content="https://placehold.co/1200x630/0f172a/0ea5e9?text=Tanaka+Consulting"> <!-- Placeholder image, replace with your own -->
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.com"> <!-- Replace with your actual domain -->
+    <meta property="twitter:title" content="Tanaka Chinengundu - Freelance & Consulting Services">
+    <meta property="twitter:description" content="Expert freelance and consulting services in Web Design, Web App Development, Remote IT Support, Hosting, WhatsApp Bots, and Systems Development.">
+    <meta property="twitter:image" content="https://placehold.co/1200x675/0f172a/0ea5e9?text=Tanaka+Consulting"> <!-- Placeholder image, replace with your own -->
+
+    <!-- Additional SEO meta tags -->
+    <meta name="description" content="Tanaka Chinengundu offers professional freelance and consulting services: Web Design, Web App Development, Remote IT Support, Email & Web Hosting, WhatsApp Bot Development, and Systems Development.">
+    <meta name="keywords" content="Freelance Developer, IT Consulting, Web Design, Web App Development, Remote IT Support, Email Hosting, Domain Registration, Web Hosting, WhatsApp Bot, Systems Development, Python, JavaScript, AWS, Zimbabwe, Harare">
+    <meta name="author" content="Tanaka Chinengundu">
+    <link rel="canonical" href="https://your-domain.com"> <!-- Replace with your actual domain -->
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'tech-dark': '#0f172a',
+                        'tech-blue': '#0ea5e9',
+                        'tech-purple': '#8b5cf6',
+                        'tech-green': '#10b981',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom gradient background */
+        .gradient-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+        }
+        /* Card hover effect */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        /* Tech glow effect */
+        .tech-glow {
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+        }
+        /* Floating animation */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        /* Pulse animation */
+        .animate-pulse-subtle {
+            animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .7; }
+        }
+        /* Custom input focus style */
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #0ea5e9; /* tech-blue */
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.5); /* tech-blue with opacity */
+        }
+        /* Scroll indicator for smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Chatbot specific styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 90%;
+            max-width: 400px;
+            height: 70%;
+            max-height: 500px;
+            background-color: #1a202c; /* slate-900 equivalent */
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1000;
+            transform: scale(0.8); /* Start smaller */
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+            transform-origin: bottom right;
+            border: 1px solid #334155; /* Refined border */
+        }
+        .chatbot-container.active {
+            transform: scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+        .chatbot-header {
+            background-color: #0ea5e9; /* tech-blue */
+            color: white;
+            padding: 1rem;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600; /* Semi-bold */
+        }
+        .chatbot-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background-color: #0f172a; /* tech-dark */
+            border-left: 1px solid #1a202c; /* Match container background */
+            border-right: 1px solid #1a202c; /* Match container background */
+        }
+        .chatbot-message {
+            margin-bottom: 0.75rem;
+            padding: 0.75rem 1rem; /* Slightly more padding */
+            border-radius: 0.75rem;
+            max-width: 85%; /* Slightly wider messages */
+            word-wrap: break-word;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        }
+        .chatbot-message.user {
+            background-color: #8b5cf6; /* tech-purple */
+            align-self: flex-end;
+            margin-left: auto;
+            color: white;
+        }
+        .chatbot-message.bot {
+            background-color: #1e293b; /* slate-800 equivalent */
+            align-self: flex-start;
+            margin-right: auto;
+            color: #e2e8f0; /* gray-200 */
+        }
+        .chatbot-input-area {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #334155; /* slate-700 */
+            background-color: #1a202c; /* slate-900 equivalent */
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+        }
+        .chatbot-input-area input {
+            flex-grow: 1;
+            background-color: #0f172a; /* tech-dark */
+            border: 1px solid #334155;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            color: white;
+            margin-right: 0.5rem;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3); /* Inner shadow */
+        }
+        .chatbot-input-area button {
+            background-color: #0ea5e9; /* tech-blue */
+            color: white;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            transition: background-color 0.2s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .chatbot-input-area button:hover {
+            background-color: #0284c7; /* blue-600 */
+        }
+        .chatbot-toggle-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #0ea5e9; /* tech-blue */
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+        .chatbot-toggle-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+        .chatbot-toggle-button.hidden-toggle {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0);
+        }
+
+        /* Responsive adjustments for chatbot */
+        @media (max-width: 640px) {
+            .chatbot-container {
+                bottom: 1rem;
+                right: 1rem;
+                width: calc(100% - 2rem);
+                height: 80%;
+                max-height: calc(100vh - 8rem);
+            }
+            .chatbot-toggle-button {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+
+        /* Admin panel for training */
+        .admin-panel {
+            background-color: #1a202c; /* slate-900 equivalent */
+            padding: 1rem;
+            border-top: 1px solid #334155;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .admin-panel.active {
+            display: flex;
+        }
+        .admin-panel input, .admin-panel textarea {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            color: white;
+        }
+        .admin-panel button {
+            background-color: #10b981; /* tech-green */
+            color: white;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            transition: background-color 0.2s;
+        }
+        .admin-panel button:hover {
+            background-color: #059669; /* green-600 */
+        }
+        .admin-panel-message {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* Typing Indicator CSS */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0.75rem;
+            background-color: #1e293b; /* slate-800 equivalent */
+            max-width: 85%;
+            margin-right: auto;
+            color: #e2e8f0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            margin: 0 2px;
+            background-color: #64748b; /* slate-500 */
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: bounce 1.2s infinite ease-in-out;
+        }
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen text-white font-sans antialiased">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-slate-900/80 backdrop-blur-md z-50 border-b border-slate-700">
+        <div class="container mx-auto px-4 md:px-6 py-4">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold text-tech-blue">TC Consulting</h1>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#services" class="hover:text-tech-blue transition-colors">Services</a>
+                    <a href="#about" class="hover:text-tech-blue transition-colors">About</a>
+                    <a href="#contact" class="hover:text-tech-blue transition-colors">Contact</a>
+                </div>
+                <!-- Mobile Navigation Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-400 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-slate-800/90 py-4">
+            <a href="#services" class="block px-6 py-2 text-white hover:bg-slate-700 transition-colors">Services</a>
+            <a href="#about" class="block px-6 py-2 text-white hover:bg-slate-700 transition-colors">About</a>
+            <a href="#contact" class="block px-6 py-2 text-white hover:bg-slate-700 transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 px-4 md:px-6">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col lg:flex-row items-center gap-12 text-center lg:text-left">
+                <div class="flex-1">
+                    <h1 class="text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-tech-blue to-tech-purple">
+                            Digital Solutions for a Connected World
+                        </span>
+                    </h1>
+                    <p class="text-xl lg:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto lg:mx-0">
+                        Empowering businesses with cutting-edge <span class="text-tech-green">web technologies</span>, 
+                        reliable <span class="text-tech-green">IT support</span>, and innovative <span class="text-tech-green">custom systems</span>.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#contact" class="bg-tech-blue hover:bg-blue-600 px-8 py-3 rounded-lg font-semibold transition-colors shadow-lg">
+                            Get a Free Consultation
+                        </a>
+                        <a href="#services" class="border border-tech-blue text-tech-blue hover:bg-tech-blue hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors shadow-lg">
+                            Explore Our Services
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-1 flex justify-center lg:justify-end">
+                    <div class="relative w-72 h-72 lg:w-96 lg:h-96">
+                        <!-- Abstract tech graphic with subtle animation -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-full h-full rounded-full bg-gradient-to-br from-tech-blue to-tech-purple opacity-20 animate-float"></div>
+                        </div>
+                        <div class="absolute inset-4 flex items-center justify-center">
+                            <div class="w-full h-full rounded-full bg-tech-green opacity-10 animate-pulse-subtle"></div>
+                        </div>
+                        <!-- Central Icon/Text -->
+                        <div class="absolute inset-0 flex items-center justify-center text-tech-blue text-6xl font-bold animate-pulse-subtle delay-500">
+                             <!-- This could be an SVG icon related to tech/consulting -->
+                            <svg class="w-24 h-24 text-tech-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9.75 12L12 9.75L14.25 12L14.25 17M12 21.75C16.8284 21.75 20.75 17.8284 20.75 13C20.75 8.17157 16.8284 4.25 12 4.25C7.17157 4.25 3.25 8.17157 3.25 13C3.25 17.8284 7.17157 21.75 12 21.75ZM12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2Z"></path>
+                            </svg>
+                        </div>
+                        <div class="absolute top-4 left-4 w-6 h-6 bg-tech-blue rounded-full animate-pulse-subtle"></div>
+                        <div class="absolute bottom-4 right-4 w-5 h-5 bg-tech-green rounded-full animate-pulse-subtle delay-300"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 px-4 md:px-6 bg-slate-900/50">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-12">Our Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Web Design -->
+                <div class="bg-slate-800 p-8 rounded-xl card-hover border border-slate-700">
+                    <div class="text-tech-blue mb-4">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M6 18h.01M18 18h.01M21 9a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2V9z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Web Design</h3>
+                    <p class="text-gray-300">Crafting visually stunning, user-friendly, and responsive websites that capture your brand's essence and engage your audience.</p>
+                </div>
+
+                <!-- Web App Development -->
+                <div class="bg-slate-800 p-8 rounded-xl card-hover border border-slate-700">
+                    <div class="text-tech-green mb-4">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Web App Development</h3>
+                    <p class="text-gray-300">Building robust, scalable, and custom web applications tailored to your specific business needs using modern frameworks and technologies.</p>
+                </div>
+
+                <!-- Remote IT Support -->
+                <div class="bg-slate-800 p-8 rounded-xl card-hover border border-slate-700">
+                    <div class="text-tech-purple mb-4">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Remote IT Support</h3>
+                    <p class="text-gray-300">Providing efficient and secure remote technical assistance, troubleshooting, and maintenance to keep your systems running smoothly.</p>
+                </div>
+
+                <!-- Email Hosting, Domain Registration, Web Hosting -->
+                <div class="bg-slate-800 p-8 rounded-xl card-hover border border-slate-700">
+                    <div class="text-yellow-400 mb-4">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 8a8 8 0 01-8-8c0-2.457.777-4.745 2.05-6.619M12 12V3"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Hosting & Domains</h3>
+                    <p class="text-gray-300">Reliable email hosting, hassle-free domain registration, and secure web hosting solutions to establish your online presence.</p>
+                </div>
+
+                <!-- WhatsApp Bot Development -->
+                <div class="bg-slate-800 p-8 rounded-xl card-hover border border-slate-700">
+                    <div class="text-orange-500 mb-4">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">WhatsApp Bot Development</h3>
+                    <p class="text-300">Automating customer interactions, streamlining support, and enhancing engagement with custom-built WhatsApp chatbots.</p>
+                </div>
+
+                <!-- Systems Development -->
+                <div class="bg-slate-800 p-8 rounded-xl card-hover border border-slate-700">
+                    <div class="text-blue-400 mb-4">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9.75 12L12 9.75L14.25 12L14.25 17M12 21.75C16.8284 21.75 20.75 17.8284 20.75 13C20.75 8.17157 16.8284 4.25 12 4.25C7.17157 4.25 3.25 8.17157 3.25 13C3.25 17.8284 7.17157 21.75 12 21.75ZM12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2Z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Systems Development</h3>
+                    <p class="text-gray-300">Designing and developing custom software solutions, integrating complex systems, and optimizing workflows for enhanced efficiency.</p>
+                </div>
+
+                <!-- Android Application Development (New) -->
+                <div class="bg-slate-800 p-8 rounded-xl card-hover border border-slate-700 md:col-start-2 lg:col-start-2">
+                    <div class="text-red-400 mb-4"> <!-- Using a different color for variety -->
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Android App Development</h3>
+                    <p class="text-gray-300">Creating high-performance, intuitive, and feature-rich Android applications that deliver exceptional user experiences.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-4 md:px-6">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl font-bold text-center mb-12">About TC Consulting</h2>
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="flex-1 text-center lg:text-left">
+                    <p class="text-lg text-gray-300 mb-6">
+                        With over a decade of experience as a Senior Software Developer, I've honed my skills in building robust, scalable, and innovative digital solutions. Based in Harare, Zimbabwe, I offer my expertise to clients worldwide, focusing on delivering high-quality, impactful results.
+                    </p>
+                    <p class="text-lg text-gray-300 mb-6">
+                        My passion lies in transforming complex ideas into practical, efficient, and user-friendly applications and systems. I combine deep technical knowledge with a client-centric approach to ensure your vision is not just met, but exceeded.
+                    </p>
+                    <p class="text-lg text-gray-300">
+                        Whether you're a startup looking for a compelling web presence, an established business needing IT infrastructure optimization, or seeking custom software development, TC Consulting is your trusted partner.
+                    </p>
+                </div>
+                <div class="flex-1 flex justify-center lg:justify-end">
+                    <!-- Placeholder image related to consulting/teamwork -->
+                    <img src="image/bot.png" alt="Tanaka Chinengundu Consulting" class="rounded-xl animate-bounce" style="animation-delay: 0.5s;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-4 md:px-6 bg-slate-900/50">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-4xl font-bold mb-8">Let's Discuss Your Project</h2>
+            <p class="text-xl text-gray-300 mb-12">
+                Ready to elevate your digital presence or streamline your operations? Fill out the form below, and I'll get back to you promptly.
+            </p>
+
+            <form id="contact-form" class="space-y-6 text-left max-w-2xl mx-auto">
+                <div>
+                    <label for="name" class="block text-gray-300 text-sm font-bold mb-2">Name</label>
+                    <input type="text" id="name" name="name" required
+                           class="shadow appearance-none border border-slate-700 rounded w-full py-3 px-4 text-gray-200 leading-tight bg-slate-800 focus:shadow-outline">
+                </div>
+                <div>
+                    <label for="email" class="block text-gray-300 text-sm font-bold mb-2">Email</label>
+                    <input type="email" id="email" name="email" required
+                           class="shadow appearance-none border border-slate-700 rounded w-full py-3 px-4 text-gray-200 leading-tight bg-slate-800 focus:shadow-outline">
+                </div>
+                <div>
+                    <label for="service" class="block text-gray-300 text-sm font-bold mb-2">Interested Service(s)</label>
+                    <select id="service" name="service"
+                            class="shadow border border-slate-700 rounded w-full py-3 px-4 text-gray-200 leading-tight bg-slate-800 focus:shadow-outline">
+                        <option value="">Select a service</option>
+                        <option value="web-design">Web Design</option>
+                        <option value="web-app-development">Web App Development</option>
+                        <option value="remote-it-support">Remote IT Support</option>
+                        <option value="hosting-domains">Email Hosting, Domain Registration, Web Hosting</option>
+                        <option value="whatsapp-bot">WhatsApp Bot Development</option>
+                        <option value="systems-development">Systems Development</option>
+                        <option value="android-app-development">Android App Development</option>
+                        <option value="general-inquiry">General Inquiry</option>
+                    </select>
+                </div>
+
+                <!-- ✨ LLM-Powered Project Idea Expander ✨ -->
+                <!-- <div class="border border-slate-700 rounded-lg p-4 bg-slate-800">
+                    <label for="brief-project-idea" class="block text-gray-300 text-sm font-bold mb-2">
+                        Got a quick idea? Let our AI expand it!
+                    </label>
+                    <textarea id="brief-project-idea" rows="3" placeholder="e.g., 'I need a mobile app for booking appointments' or 'Website to sell handmade crafts'"
+                              class="shadow appearance-none border border-slate-700 rounded w-full py-2 px-3 text-gray-200 leading-tight bg-slate-900 focus:shadow-outline"></textarea>
+                    <button type="button" id="expand-project-idea"
+                            class="mt-3 bg-tech-purple hover:bg-purple-600 px-6 py-2 rounded-lg font-semibold text-sm transition-colors shadow-lg w-full md:w-auto">
+                        ✨ Expand My Idea
+                    </button>
+                    <div id="project-idea-loading" class="text-tech-blue text-sm mt-3 text-center hidden">
+                        Generating idea... <span class="animate-pulse">. . .</span>
+                    </div>
+                    <div id="expanded-project-idea-container" class="mt-4 hidden">
+                        <label for="expanded-project-idea" class="block text-gray-300 text-sm font-bold mb-2">
+                            Expanded Project Idea (Review & Copy)
+                        </label>
+                        <textarea id="expanded-project-idea" rows="8" readonly
+                                  class="shadow appearance-none border border-slate-700 rounded w-full py-2 px-3 text-gray-200 leading-tight bg-slate-900 focus:shadow-outline resize-y"></textarea>
+                        <button type="button" id="copy-to-message"
+                                class="mt-3 bg-tech-green hover:bg-green-600 px-6 py-2 rounded-lg font-semibold text-sm transition-colors shadow-lg w-full md:w-auto">
+                            Copy to Main Message
+                        </button>
+                    </div>
+                    <p id="gemini-error-message" class="text-red-500 text-sm mt-3 hidden text-center"></p>
+                </div> -->
+                <!-- End LLM-Powered Feature -->
+
+                <div>
+                    <label for="message" class="block text-gray-300 text-sm font-bold mb-2">Your Message</label>
+                    <textarea id="message" name="message" rows="6" required
+                              class="shadow appearance-none border border-slate-700 rounded w-full py-3 px-4 text-gray-200 leading-tight bg-slate-800 focus:shadow-outline"></textarea>
+                </div>
+                <div class="flex items-center justify-center">
+                    <button type="submit"
+                            class="bg-tech-blue hover:bg-blue-600 px-8 py-3 rounded-lg font-semibold transition-colors shadow-lg focus:outline-none focus:shadow-outline">
+                        Send Message
+                    </button>
+                </div>
+                <div id="form-message" class="mt-4 text-center text-sm font-semibold"></div>
+            </form>
+
+            <div class="mt-16 grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-800 p-6 rounded-xl card-hover border border-slate-700">
+                    <svg class="w-8 h-8 text-tech-blue mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                    <h3 class="font-semibold mb-2">Email</h3>
+                    <a href="mailto:your.email@example.com" class="text-tech-blue hover:underline">your.email@example.com</a> <!-- Replace with your actual email -->
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl card-hover border border-slate-700">
+                    <svg class="w-8 h-8 text-tech-blue mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                    </svg>
+                    <h3 class="font-semibold mb-2">Phone</h3>
+                    <a href="tel:+263778040497" class="text-tech-blue hover:underline">+263 778040497</a> <!-- Replace with your actual phone number -->
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-xl card-hover">
+                    <svg class="w-8 h-8 text-tech-blue mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <h3 class="font-semibold mb-2">LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/taqsblaze" target="_blank" class="text-tech-blue hover:underline">Connect on LinkedIn</a>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <p class="text-gray-400 mb-2">📍 Based in Harare, Zimbabwe</p>
+                <p class="text-gray-400">Available for remote opportunities worldwide</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 md:px-6 border-t border-slate-700">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-400">&copy; 2025 TC Consulting. All rights reserved. Built with passion and code by Tanaka Chinengundu.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot Toggle Button -->
+    <div id="chatbot-toggle" class="chatbot-toggle-button">
+        💬
+    </div>
+
+    <!-- Chatbot Container -->
+    <div id="chatbot-container" class="chatbot-container">
+        <div class="chatbot-header">
+            <h3 class="text-lg font-bold">TC Chatbot</h3>
+            <div>
+                <!-- <button id="chatbot-admin-toggle" class="text-white text-sm px-2 py-1 rounded-md bg-tech-green hover:bg-green-600 mr-2">Admin</button> -->
+                <button id="chatbot-close" class="text-white text-xl ml-auto">&times;</button>
+            </div>
+        </div>
+        <div id="chatbot-messages" class="chatbot-messages flex flex-col space-y-2">
+            <!-- Chat messages will be appended here -->
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" id="chatbot-input" placeholder="Type your message..." autocomplete="off">
+            <button id="chatbot-send">Send</button>
+        </div>
+
+        <!-- Admin Panel for Training Data -->
+        <div id="admin-panel" class="admin-panel">
+            <h4 class="text-md font-bold text-tech-blue">Train Chatbot</h4>
+            <input type="text" id="admin-question" placeholder="Training Question">
+            <input type="text" id="admin-intent" placeholder="Corresponding Intent (e.g., 'greeting', 'web_design')">
+            <textarea id="admin-answer" rows="3" placeholder="Full Answer for this Intent"></textarea>
+            <button id="admin-add-qa">Add Q&A</button>
+            <button id="admin-clear-qa" class="bg-red-600 hover:bg-red-700">Clear All Training Data</button>
+            <p class="admin-panel-message" id="admin-message"></p>
+            <p class="text-xs text-gray-400 text-center">Data stored in your browser's local storage. Chatbot will retrain on site load.</p>
+        </div>
+    </div>
+
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- Brain.js CDN for Machine Learning -->
+    <script src="https://unpkg.com/brain.js@2.0.0-beta.2/dist/brain-browser.min.js"></script>
+    <script src="js/app.min.js"></script>
+</body>
+</html>
