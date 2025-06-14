@@ -497,8 +497,8 @@
                            class="shadow appearance-none border border-slate-700 rounded w-full py-3 px-4 text-gray-200 leading-tight bg-slate-800 focus:shadow-outline">
                 </div>
                 <div>
-                    <label for="email" class="block text-gray-300 text-sm font-bold mb-2">Email</label>
-                    <input type="email" id="email" name="email" required
+                    <label for="number" class="block text-gray-300 text-sm font-bold mb-2">phone numbers</label>
+                    <input type="text" id="number" name="number" required
                            class="shadow appearance-none border border-slate-700 rounded w-full py-3 px-4 text-gray-200 leading-tight bg-slate-800 focus:shadow-outline">
                 </div>
                 <div>
@@ -516,35 +516,6 @@
                         <option value="general-inquiry">General Inquiry</option>
                     </select>
                 </div>
-
-                <!-- ✨ LLM-Powered Project Idea Expander ✨ -->
-                <!-- <div class="border border-slate-700 rounded-lg p-4 bg-slate-800">
-                    <label for="brief-project-idea" class="block text-gray-300 text-sm font-bold mb-2">
-                        Got a quick idea? Let our AI expand it!
-                    </label>
-                    <textarea id="brief-project-idea" rows="3" placeholder="e.g., 'I need a mobile app for booking appointments' or 'Website to sell handmade crafts'"
-                              class="shadow appearance-none border border-slate-700 rounded w-full py-2 px-3 text-gray-200 leading-tight bg-slate-900 focus:shadow-outline"></textarea>
-                    <button type="button" id="expand-project-idea"
-                            class="mt-3 bg-tech-purple hover:bg-purple-600 px-6 py-2 rounded-lg font-semibold text-sm transition-colors shadow-lg w-full md:w-auto">
-                        ✨ Expand My Idea
-                    </button>
-                    <div id="project-idea-loading" class="text-tech-blue text-sm mt-3 text-center hidden">
-                        Generating idea... <span class="animate-pulse">. . .</span>
-                    </div>
-                    <div id="expanded-project-idea-container" class="mt-4 hidden">
-                        <label for="expanded-project-idea" class="block text-gray-300 text-sm font-bold mb-2">
-                            Expanded Project Idea (Review & Copy)
-                        </label>
-                        <textarea id="expanded-project-idea" rows="8" readonly
-                                  class="shadow appearance-none border border-slate-700 rounded w-full py-2 px-3 text-gray-200 leading-tight bg-slate-900 focus:shadow-outline resize-y"></textarea>
-                        <button type="button" id="copy-to-message"
-                                class="mt-3 bg-tech-green hover:bg-green-600 px-6 py-2 rounded-lg font-semibold text-sm transition-colors shadow-lg w-full md:w-auto">
-                            Copy to Main Message
-                        </button>
-                    </div>
-                    <p id="gemini-error-message" class="text-red-500 text-sm mt-3 hidden text-center"></p>
-                </div> -->
-                <!-- End LLM-Powered Feature -->
 
                 <div>
                     <label for="message" class="block text-gray-300 text-sm font-bold mb-2">Your Message</label>
@@ -637,8 +608,6 @@
 
     <!-- Axios CDN -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- Brain.js CDN for Machine Learning -->
-    <script src="https://unpkg.com/brain.js@2.0.0-beta.2/dist/brain-browser.min.js"></script>
     <script src="js/app.min.js"></script>
     <script src="bot/bot.min.js"></script>
     <script src="bot/brain.min.js"></script>
